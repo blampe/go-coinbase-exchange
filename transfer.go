@@ -7,6 +7,9 @@ import (
 type Transfer struct {
 	Type              string  `json:"type"`
 	Amount            float64 `json:"amount,string"`
+	CreatedAt         Time    `json:"created_at,string"`
+	CanceledAt        Time    `json:"canceled_at,string"`
+	ProcessedAt       Time    `json:"processed_at,string"`
 	CoinbaseAccountId string  `json:"coinbase_account_id,string"`
 }
 

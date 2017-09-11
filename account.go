@@ -33,6 +33,10 @@ type GetAccountLedgerParams struct {
 	Pagination PaginationParams
 }
 
+type GetAccountTransfersParams struct {
+	Pagination PaginationParams
+}
+
 // Holds
 
 type Hold struct {
@@ -72,6 +76,17 @@ func (c *Client) ListAccountLedger(id string,
 	}
 
 	return NewCursor(c, "GET", fmt.Sprintf("/accounts/%s/ledger", id),
+		&paginationParams)
+}
+
+func (c *Client) ListAccountTransfers(id string,
+	p ...GetAccountTransfersParams) *Cursor {
+	paginationParams := PaginationParams{}
+	if len(p) > 0 {
+		paginationParams = p[0].Pagination
+	}
+
+	return NewCursor(c, "GET", fmt.Sprintf("/accounts/%s/transfers", id),
 		&paginationParams)
 }
 
